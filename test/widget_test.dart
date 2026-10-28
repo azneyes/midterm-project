@@ -202,6 +202,7 @@ void main() {
     await tester.pump();
     expect(find.byType(NavigationRail), findsOneWidget);
     expect(find.byType(NavigationBar), findsNothing);
+    expect(find.text('KPA NOW'), findsOneWidget); // S-6 브랜드 바
   });
 
   testWidgets('스카치 더블: 배지 → 파트너를 골라야 신청 가능 → 팀 완료 안내', (tester) async {

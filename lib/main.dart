@@ -7,6 +7,7 @@
 // │ S-3  │ NavigationBar (<840dp)       │ 하단 메뉴 5개        │ P06 재인 · P04     │
 // │ S-4  │ NavigationRail (≥840dp)      │ 측면 메뉴 5개        │ 적응형 · P06       │
 // │ S-5  │ IndexedStack                 │ 메뉴별 화면 유지     │ P03 통제·자유      │
+// │ S-6  │ AppBar(primary) + 8볼 로고   │ KPA NOW 브랜드 바    │ P04 일관성         │
 // └────────────────────────────────────────────────────────────────────────────┘
 // 화면 흐름(docs/디자인가이드.md 1장과 같게):
 //   [옆으로(tab)] 대회 · 랭킹 · 동호회 · 소식 · AI 코치
@@ -96,6 +97,7 @@ class _KpaShellState extends State<KpaShell> {
       builder: (context, constraints) {
         if (constraints.maxWidth >= railBreakpoint) {
           return Scaffold(
+            appBar: const BrandBar(), // S-6 P04
             body: Row(
               children: [
                 NavigationRail(
@@ -103,16 +105,6 @@ class _KpaShellState extends State<KpaShell> {
                   selectedIndex: _index,
                   onDestinationSelected: _select,
                   labelType: NavigationRailLabelType.all,
-                  leading: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Text(
-                      'KPA NOW',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ),
                   destinations: [
                     for (final d in _destinations)
                       NavigationRailDestination(
@@ -129,6 +121,7 @@ class _KpaShellState extends State<KpaShell> {
           );
         }
         return Scaffold(
+          appBar: const BrandBar(), // S-6 P04
           body: body,
           bottomNavigationBar: NavigationBar(
             // S-3 P06 폰: 하단 메뉴 (아이콘 + 글자)
@@ -145,6 +138,64 @@ class _KpaShellState extends State<KpaShell> {
           ),
         );
       },
+    );
+  }
+}
+
+/// S-6 브랜드 바: 모든 메뉴 화면 맨 위에 앱 이름을 같은 모양으로 보여 준다 (P04 일관성)
+/// 메뉴 화면 각자의 제목줄(T-1 · R-1 …)은 이 바 아래에 그대로 남는다.
+/// 쌓기(push)로 들어간 상세 화면은 전체 화면이라 이 바를 덮는다 — 상세는 뒤로 버튼 + 제목이 우선.
+class BrandBar extends StatelessWidget implements PreferredSizeWidget {
+  const BrandBar({super.key});
+
+  @override
+  Size get preferredSize => const Size.fromHeight(48);
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return AppBar(
+      toolbarHeight: 48,
+      backgroundColor: scheme.primary,
+      foregroundColor: scheme.onPrimary,
+      titleSpacing: 16,
+      title: Row(
+        children: [
+          // 8볼 모양 로고 — 이미지 파일 없이 위젯으로 그린다
+          Container(
+            width: 26,
+            height: 26,
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+              color: Colors.black,
+              shape: BoxShape.circle,
+            ),
+            child: Container(
+              width: 14,
+              height: 14,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: const Text(
+                '8',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 9,
+                  fontWeight: FontWeight.w900,
+                  height: 1,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          const Text(
+            'KPA NOW',
+            style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1.5),
+          ),
+        ],
+      ),
     );
   }
 }
