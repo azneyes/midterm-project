@@ -23,7 +23,7 @@ KPA NOW (Korea Pool Association) v2
 | v1 현행 | v2 화면 A | v2 화면 B | v2 화면 C | v2 넓은 화면 |
 |---|---|---|---|---|
 | ![v1 현행](docs/screenshots/01_v1_current.png) | ![v2 A](docs/screenshots/02_v2_a.png) | ![v2 B](docs/screenshots/03_v2_b.png) | ![v2 C](docs/screenshots/04_v2_c.png) | ![v2 넓은 화면](docs/screenshots/05_v2_wide.png) |
-| TODO: 캡션 | TODO: 캡션 | TODO: 캡션 | TODO: 캡션 | TODO: 캡션 |
+| KBF NOW 현행 화면 (TODO: 캡처해서 넣기) | 대회 일정 — 접수 상태 배지 · 스카치 더블 배지 | 대회 상세 — 진행중 대회는 대진표 탭부터 | 스카치 더블 참가 신청 — 동호회 회원 중 파트너 선택 | 넓은 화면 — 측면 메뉴 · 대회 카드 격자 |
 
 ### 설명
 1. KPA NOW는 대한민국 포켓볼 대회 일정, 참가 신청 안내, 대진표, 경기 결과 및 선수 랭킹을 한곳에서 확인할 수 있는 스포츠 앱입니다. 선수별 경기 기록과 주요 소식을 제공하여 대회 정보에 쉽게 접근하고 포켓볼 커뮤니티에 활발히 참여할 수 있도록 돕습니다.
