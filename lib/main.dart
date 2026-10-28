@@ -4,19 +4,21 @@
 // │ 번호 │ Flutter 위젯명               │ 비즈니스 명칭(한글)  │ 원칙(P번호)        │
 // │ S-1  │ MaterialApp                  │ KPA NOW              │ —                  │
 // │ S-2  │ ThemeData(seedColor 그린)    │ 당구대 그린 브랜드 색│ P04 일관성         │
-// │ S-3  │ NavigationBar (<840dp)       │ 하단 메뉴 4개        │ P06 재인 · P04     │
-// │ S-4  │ NavigationRail (≥840dp)      │ 측면 메뉴 4개        │ 적응형 · P06       │
+// │ S-3  │ NavigationBar (<840dp)       │ 하단 메뉴 5개        │ P06 재인 · P04     │
+// │ S-4  │ NavigationRail (≥840dp)      │ 측면 메뉴 5개        │ 적응형 · P06       │
 // │ S-5  │ IndexedStack                 │ 메뉴별 화면 유지     │ P03 통제·자유      │
 // └────────────────────────────────────────────────────────────────────────────┘
 // 화면 흐름(docs/디자인가이드.md 1장과 같게):
-//   [옆으로(tab)] 대회 · 랭킹 · 소식 · AI 코치
+//   [옆으로(tab)] 대회 · 랭킹 · 동호회 · 소식 · AI 코치
 //   T 대회 일정 ──쌓기(push)──▶ D 대회 상세 [옆으로(tab): 정보 | 대진표 | 결과] ──덮기(modal)──▶ E 참가 신청(예시)
 //   R 선수 랭킹 ──쌓기(push)──▶ P 선수 프로필 ──덮기(modal)──▶ A AI 경기력 분석 카드
+//   K 내 동호회 (동호회 정보 + 회원 목록)
 //   N 협회 소식 (화면 안 펼치기 — setState)
 //   C AI 코치  ──쌓기(push)──▶ V 영상 분석 결과
 // 기획 문서에 없는 화면은 만들지 않는다(감점). 화면을 늘리면 이 주석·가이드도 같이 고친다.
 import 'package:flutter/material.dart';
 
+import 'screens/club_screen.dart';
 import 'screens/coach_screen.dart';
 import 'screens/news_screen.dart';
 import 'screens/rankings_screen.dart';
@@ -43,7 +45,7 @@ class KpaNowApp extends StatelessWidget {
   }
 }
 
-/// 메뉴 4개 — 순서·아이콘·이름은 디자인 가이드 S-3 표와 같다
+/// 메뉴 5개 — 순서·아이콘·이름은 디자인 가이드 S-3 표와 같다
 const _destinations = [
   (
     icon: Icons.emoji_events_outlined,
@@ -51,6 +53,7 @@ const _destinations = [
     label: '대회',
   ),
   (icon: Icons.leaderboard_outlined, selected: Icons.leaderboard, label: '랭킹'),
+  (icon: Icons.groups_outlined, selected: Icons.groups, label: '동호회'),
   (icon: Icons.campaign_outlined, selected: Icons.campaign, label: '소식'),
   (
     icon: Icons.smart_display_outlined,
@@ -73,6 +76,7 @@ class _KpaShellState extends State<KpaShell> {
   static const _pages = [
     TournamentsScreen(),
     RankingsScreen(),
+    ClubScreen(),
     NewsScreen(),
     CoachScreen(),
   ];

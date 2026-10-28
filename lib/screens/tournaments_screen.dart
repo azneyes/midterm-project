@@ -10,6 +10,7 @@
 // │ T-6  │ LoadingView                       │ 불러오는 중 표시      │ P01 가시성    │
 // │ T-7  │ ErrorView + FilledButton          │ 오류 안내·다시 시도   │ P09 오류 복구 │
 // │ T-8  │ EmptyView                         │ 빈 목록 안내          │ P01 가시성    │
+// │ T-9  │ ScotchDoublesBadge                │ 스카치 더블 배지      │ P06 재인      │
 // └────────────────────────────────────────────────────────────────────────────┘
 // 전환: T → D 는 쌓기(Navigator.push).  적응형: LayoutBuilder 600dp 분기(T-3 ↔ T-4).
 import 'package:flutter/material.dart';
@@ -27,12 +28,14 @@ class TournamentsScreen extends StatefulWidget {
     this.load = fetchTournaments,
     this.loadBrackets = fetchBrackets,
     this.loadResults = fetchResults,
+    this.loadPartners = fetchPartnerCandidates,
   });
 
   /// 데이터를 가져오는 함수 — 앱은 기본값(GET), 테스트는 가짜 함수를 넣는다.
   final Loader<Tournament> load;
   final LoaderById<BracketMatch> loadBrackets;
   final LoaderById<Standing> loadResults;
+  final Loader<ClubMember> loadPartners;
 
   @override
   State<TournamentsScreen> createState() => _TournamentsScreenState();
@@ -58,6 +61,7 @@ class _TournamentsScreenState extends State<TournamentsScreen> {
           tournament: t,
           loadBrackets: widget.loadBrackets,
           loadResults: widget.loadResults,
+          loadPartners: widget.loadPartners,
         ),
       ),
     );
@@ -114,7 +118,7 @@ class _TournamentsScreenState extends State<TournamentsScreen> {
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
                               maxCrossAxisExtent: 380,
-                              mainAxisExtent: 168,
+                              mainAxisExtent: 196,
                               crossAxisSpacing: 12,
                               mainAxisSpacing: 12,
                             ),
@@ -197,6 +201,10 @@ class TournamentCard extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
+              if (t.isScotchDoubles) ...[
+                const SizedBox(height: 6),
+                const ScotchDoublesBadge(), // T-9 P06
+              ],
               const SizedBox(height: 6),
               _IconLine(Icons.event, '${t.startDate} ~ ${t.endDate}'),
               const SizedBox(height: 2),

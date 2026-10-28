@@ -17,6 +17,23 @@
       "aiSummary": ""
     },
     {
+      "id": 5,
+      "name": "2026 KPA 스카치 더블 페스티벌",
+      "status": "접수중",
+      "format": "스카치 더블",
+      "dDay": "접수 마감 D-9",
+      "startDate": "2026-11-22",
+      "endDate": "2026-11-22",
+      "venue": "서울 마포 큐스테이션",
+      "region": "서울",
+      "game": "9볼",
+      "divisions": ["오픈 페어", "혼성 페어", "동호인 페어"],
+      "entryFee": "팀당 40,000원",
+      "prize": "총상금 500만 원 · 동호회 단체상",
+      "raceTo": "예선 5선승 · 본선 7선승",
+      "aiSummary": ""
+    },
+    {
       "id": 2,
       "name": "제12회 부산 10볼 챔피언십",
       "status": "진행중",
@@ -204,5 +221,28 @@
       "angle": "평균 컷 각도 22°로 매우 안정적입니다.",
       "positioning": "쿠션 한 번을 이용해 다음 공 정면에 서는 패턴이 4회 반복되었습니다."
     }
+  ],
+  "clubs": [
+    {
+      "id": 1, "mine": true, "name": "서울 큐클럽", "region": "서울 송파",
+      "meeting": "매주 수 19:00 · 토 14:00", "place": "KPA 당구 아레나 3층",
+      "founded": "2019", "intro": "초보부터 선수 등록 회원까지 함께 치는 포켓볼 동호회입니다. 매달 리그전과 스카치 더블 연습 모임이 있습니다."
+    },
+    {
+      "id": 2, "mine": false, "name": "인천 포켓", "region": "인천 남동",
+      "meeting": "매주 화 · 금 19:30", "place": "남동 빌리어드홀",
+      "founded": "2021", "intro": "인천 지역 9볼 동호회입니다."
+    }
+  ],
+  "members": [
+    { "id": 1, "clubId": 1, "name": "나 (예시 사용자)", "role": "회원", "level": "B급", "joined": "2025-03", "me": true },
+    { "id": 2, "clubId": 1, "name": "김도윤", "role": "회장", "level": "선수 등록", "joined": "2019-05", "me": false },
+    { "id": 3, "clubId": 1, "name": "한수아", "role": "총무", "level": "선수 등록", "joined": "2020-02", "me": false },
+    { "id": 4, "clubId": 1, "name": "강민호", "role": "회원", "level": "A급", "joined": "2021-09", "me": false },
+    { "id": 5, "clubId": 1, "name": "서지우", "role": "회원", "level": "B급", "joined": "2023-01", "me": false },
+    { "id": 6, "clubId": 1, "name": "임하늘", "role": "회원", "level": "C급", "joined": "2024-06", "me": false },
+    { "id": 7, "clubId": 1, "name": "조은비", "role": "회원", "level": "B급", "joined": "2025-08", "me": false },
+    { "id": 8, "clubId": 2, "name": "정하윤", "role": "회장", "level": "선수 등록", "joined": "2021-01", "me": false },
+    { "id": 9, "clubId": 2, "name": "윤서연", "role": "회원", "level": "선수 등록", "joined": "2021-04", "me": false }
   ]
 }

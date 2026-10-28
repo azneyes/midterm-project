@@ -25,6 +25,7 @@ class Tournament {
     this.prize = '',
     this.raceTo = '',
     this.aiSummary = '',
+    this.format = '개인전',
   });
 
   final int id;
@@ -47,6 +48,12 @@ class Tournament {
 
   /// AI 경기 요약 — 미리 작성한 문장 (비어 있으면 요약 카드를 숨긴다)
   final String aiSummary;
+
+  /// 개인전 · 스카치 더블 (db.json에 없으면 개인전)
+  final String format;
+
+  /// 스카치 더블: 두 선수가 한 팀으로 번갈아 한 번씩 샷 — 신청할 때 파트너를 고른다
+  bool get isScotchDoubles => format == '스카치 더블';
 
   static Tournament? fromJson(Object? json) {
     return switch (json) {
@@ -76,6 +83,7 @@ class Tournament {
           prize: json['prize'] as String? ?? '',
           raceTo: json['raceTo'] as String? ?? '',
           aiSummary: json['aiSummary'] as String? ?? '',
+          format: json['format'] as String? ?? '개인전',
         ),
       _ => null,
     };
@@ -419,6 +427,103 @@ class MatchVideo {
           shotSelection: json['shotSelection'] as String? ?? '',
           angle: json['angle'] as String? ?? '',
           positioning: json['positioning'] as String? ?? '',
+        ),
+      _ => null,
+    };
+  }
+}
+
+/// 동호회 (K 내 동호회) — 로그인이 없으므로 "내 동호회"는 db.json의 mine: true로 고정한 예시
+class Club {
+  const Club({
+    required this.id,
+    required this.name,
+    required this.region,
+    required this.meeting,
+    required this.place,
+    required this.founded,
+    required this.intro,
+  });
+
+  final int id;
+  final String name;
+  final String region;
+
+  /// 정기 모임 요일·시간
+  final String meeting;
+  final String place;
+  final String founded;
+  final String intro;
+
+  static Club? fromJson(Object? json) {
+    return switch (json) {
+      {
+        'id': int id,
+        'name': String name,
+        'region': String region,
+        'meeting': String meeting,
+        'place': String place,
+        'founded': String founded,
+        'intro': String intro,
+      } =>
+        Club(
+          id: id,
+          name: name,
+          region: region,
+          meeting: meeting,
+          place: place,
+          founded: founded,
+          intro: intro,
+        ),
+      _ => null,
+    };
+  }
+}
+
+/// 동호회 회원 (K 회원 목록 · E 스카치 더블 파트너 선택) — 모두 가상 인물
+class ClubMember {
+  const ClubMember({
+    required this.id,
+    required this.clubId,
+    required this.name,
+    required this.role,
+    required this.level,
+    required this.joined,
+    this.me = false,
+  });
+
+  final int id;
+  final int clubId;
+  final String name;
+
+  /// 회장 · 총무 · 회원
+  final String role;
+
+  /// 실력 등급 (C급 · B급 · A급 · 선수 등록)
+  final String level;
+  final String joined;
+
+  /// 예시 사용자 본인 — 파트너 목록에서는 빠진다
+  final bool me;
+
+  static ClubMember? fromJson(Object? json) {
+    return switch (json) {
+      {
+        'id': int id,
+        'clubId': int clubId,
+        'name': String name,
+        'role': String role,
+        'level': String level,
+        'joined': String joined,
+      } =>
+        ClubMember(
+          id: id,
+          clubId: clubId,
+          name: name,
+          role: role,
+          level: level,
+          joined: joined,
+          me: json['me'] == true,
         ),
       _ => null,
     };

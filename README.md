@@ -122,23 +122,24 @@ kpa-now-v2/
 ├── AGENTS.md                 # AI 가드레일 (UI만) — CLAUDE.md는 이 파일을 따른다는 한 줄
 ├── pubspec.yaml              # 추가 패키지는 http 하나
 ├── lib/
-│   ├── main.dart             # 앱 뼈대 S · 메뉴 4개(폰 하단 / 840dp 이상 측면) · 화면 흐름 주석
+│   ├── main.dart             # 앱 뼈대 S · 메뉴 5개(폰 하단 / 840dp 이상 측면) · 화면 흐름 주석
 │   ├── api.dart              # GET만 · API_BASE · DEMO_STATE
-│   ├── models.dart           # JSON → Tournament · BracketMatch · Standing · Player · MatchRecord · News · MatchVideo
-│   ├── widgets.dart          # LoadingView · ErrorView · EmptyView · AsyncListView · StatusBadge · DemoNotice
+│   ├── models.dart           # JSON → Tournament · BracketMatch · Standing · Player · MatchRecord · News · MatchVideo · Club · ClubMember
+│   ├── widgets.dart          # LoadingView · ErrorView · EmptyView · AsyncListView · StatusBadge · DemoNotice · ScotchDoublesBadge
 │   └── screens/
 │       ├── tournaments_screen.dart       # T 대회 일정 — GET /tournaments, 상태 필터, 600dp 격자
 │       ├── tournament_detail_screen.dart # D 대회 상세 — push, 탭(정보|대진표|결과), GET /brackets · /results
-│       ├── entry_sheet.dart              # E 참가 신청(예시) — modal, 완료 안내 Dialog
+│       ├── entry_sheet.dart              # E 참가 신청(예시) — modal, 스카치 더블은 동호회 회원 중 파트너 선택, 완료 안내 Dialog
 │       ├── rankings_screen.dart          # R 선수 랭킹 — GET /players, 남자|여자
 │       ├── player_screen.dart            # P 선수 프로필 — push, GET /matches, 600dp 2단
 │       ├── analysis_sheet.dart           # A AI 경기력 분석 카드 — modal, 미리 작성한 분석
+│       ├── club_screen.dart              # K 내 동호회 — GET /clubs · /members, 600dp 2단
 │       ├── news_screen.dart              # N 협회 소식 — GET /news, 펼쳐 읽기
 │       ├── coach_screen.dart             # C AI 코치 — GET /videos
 │       └── video_analysis_screen.dart    # V 영상 분석 결과 — push, 미리 작성한 피드백
-├── test/widget_test.dart     # 3상태 · push/tab/modal · 600dp/840dp 위젯 테스트
+├── test/widget_test.dart     # 3상태 · push/tab/modal · 600dp/840dp · 스카치 더블 파트너 · 동호회 위젯 테스트
 ├── mock_server/
-│   ├── db.json               # [필수] GET 데이터 (tournaments · brackets · results · players · matches · news · videos) — 선수는 모두 가상 인물
+│   ├── db.json               # [필수] GET 데이터 (tournaments · brackets · results · players · matches · news · videos · clubs · members) — 선수·회원은 모두 가상 인물
 │   ├── package.json          # json-server 0.17.4 고정
 │   ├── api/server.js · vercel.json   # (가산) 읽기 전용 배포
 │   └── README.md
@@ -156,13 +157,14 @@ kpa-now-v2/
 
 | 화면 | 이름 (비즈니스 명칭) | 파일 | 전환 | 요소 번호 |
 |---|---|---|---|---|
-| S | 앱 뼈대 · 메뉴 4개 | `lib/main.dart` | 옆으로(NavigationBar · Rail) | S-1 ~ S-5 |
-| T | 대회 일정 | `lib/screens/tournaments_screen.dart` | 첫 화면 | T-1 ~ T-8 |
-| D | 대회 상세 | `lib/screens/tournament_detail_screen.dart` | 쌓기(push) · 옆으로(tab) | D-1 ~ D-8 |
-| E | 참가 신청(예시) | `lib/screens/entry_sheet.dart` | 덮기(modal) · Dialog | E-1 ~ E-6 |
+| S | 앱 뼈대 · 메뉴 5개 | `lib/main.dart` | 옆으로(NavigationBar · Rail) | S-1 ~ S-5 |
+| T | 대회 일정 | `lib/screens/tournaments_screen.dart` | 첫 화면 | T-1 ~ T-9 |
+| D | 대회 상세 | `lib/screens/tournament_detail_screen.dart` | 쌓기(push) · 옆으로(tab) | D-1 ~ D-9 |
+| E | 참가 신청(예시) · 스카치 더블 파트너 선택 | `lib/screens/entry_sheet.dart` | 덮기(modal) · Dialog | E-1 ~ E-7 |
 | R | 선수 랭킹 | `lib/screens/rankings_screen.dart` | 옆으로(메뉴) | R-1 ~ R-6 |
 | P | 선수 프로필 | `lib/screens/player_screen.dart` | 쌓기(push) | P-1 ~ P-6 |
 | A | AI 경기력 분석 카드 | `lib/screens/analysis_sheet.dart` | 덮기(modal) | A-1 ~ A-7 |
+| K | 내 동호회 | `lib/screens/club_screen.dart` | 옆으로(메뉴) | K-1 ~ K-7 |
 | N | 협회 소식 | `lib/screens/news_screen.dart` | 옆으로(메뉴) | N-1 ~ N-5 |
 | C | AI 코치 | `lib/screens/coach_screen.dart` | 옆으로(메뉴) | C-1 ~ C-6 |
 | V | 영상 분석 결과 | `lib/screens/video_analysis_screen.dart` | 쌓기(push) | V-1 ~ V-7 |

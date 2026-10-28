@@ -114,6 +114,27 @@ Future<List<MatchVideo>> fetchVideos() async {
   return list.map(MatchVideo.fromJson).nonNulls.toList();
 }
 
+/// K 내 동호회: GET /clubs?mine=true (로그인 없음 — db.json에 고정한 예시 사용자의 동호회)
+Future<List<Club>> fetchMyClubs() async {
+  final list = await _getList('clubs?mine=true');
+  return list.map(Club.fromJson).nonNulls.toList();
+}
+
+/// K 회원 목록: GET /members?clubId=1 (임원 먼저 보이도록 db.json 순서 그대로)
+Future<List<ClubMember>> fetchClubMembers(int clubId) async {
+  final list = await _getList('members?clubId=$clubId');
+  return list.map(ClubMember.fromJson).nonNulls.toList();
+}
+
+/// 예시 사용자의 동호회 id — 로그인이 없으므로 db.json의 서울 큐클럽(mine: true)으로 고정
+const myClubId = 1;
+
+/// E 스카치 더블 파트너 후보: GET /members?clubId=1&me=false (내 동호회 회원, 본인 제외 — json-server 필터)
+Future<List<ClubMember>> fetchPartnerCandidates() async {
+  final list = await _getList('members?clubId=$myClubId&me=false');
+  return list.map(ClubMember.fromJson).nonNulls.toList();
+}
+
 /// 화면이 데이터를 받는 함수 모양 — 테스트에서는 가짜 함수를 넣는다.
 typedef Loader<T> = Future<List<T>> Function();
 typedef LoaderById<T> = Future<List<T>> Function(int id);

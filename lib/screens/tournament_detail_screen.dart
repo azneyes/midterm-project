@@ -10,6 +10,7 @@
 // │ D-6  │ FutureBuilder(GET /brackets)      │ 라운드별 대진표       │ P01 가시성     │
 // │ D-7  │ Card + DemoNotice                 │ AI 경기 요약 카드     │ P10 도움말     │
 // │ D-8  │ FutureBuilder(GET /results)       │ 최종 순위표           │ P01 · P09      │
+// │ D-9  │ Card(ScotchDoublesBadge + Text)   │ 스카치 더블 경기 방식 │ P10 도움말     │
 // └────────────────────────────────────────────────────────────────────────────┘
 // 전환: T → D 쌓기(push) · D 안에서 옆으로(tab) · D → E 덮기(modal)
 // 처음 열리는 탭: 접수중 → 정보 · 진행중 → 대진표 · 종료 → 결과 (D-2 P07 — 상태에 맞는 탭을 먼저)
@@ -26,11 +27,13 @@ class TournamentDetailScreen extends StatelessWidget {
     required this.tournament,
     this.loadBrackets = fetchBrackets,
     this.loadResults = fetchResults,
+    this.loadPartners = fetchPartnerCandidates,
   });
 
   final Tournament tournament;
   final LoaderById<BracketMatch> loadBrackets;
   final LoaderById<Standing> loadResults;
+  final Loader<ClubMember> loadPartners;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,7 @@ class TournamentDetailScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            _InfoTab(tournament: tournament),
+            _InfoTab(tournament: tournament, loadPartners: loadPartners),
             _BracketTab(tournament: tournament, load: loadBrackets),
             _ResultTab(tournament: tournament, load: loadResults),
           ],
@@ -67,9 +70,10 @@ class TournamentDetailScreen extends StatelessWidget {
 }
 
 class _InfoTab extends StatelessWidget {
-  const _InfoTab({required this.tournament});
+  const _InfoTab({required this.tournament, required this.loadPartners});
 
   final Tournament tournament;
+  final Loader<ClubMember> loadPartners;
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +97,25 @@ class _InfoTab extends StatelessWidget {
             Text(t.dDay, style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
+        if (t.isScotchDoubles)
+          Card(
+            // D-9 P10: 처음 보는 사람도 경기 방식과 신청 방법을 알 수 있게
+            margin: const EdgeInsets.only(top: 12),
+            color: Theme.of(context).colorScheme.secondaryContainer,
+            child: const Padding(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ScotchDoublesBadge(),
+                  SizedBox(height: 8),
+                  Text('두 선수가 한 팀이 되어 한 번씩 번갈아 칩니다. 브레이크 다음 샷은 파트너가 칩니다.'),
+                  SizedBox(height: 4),
+                  Text('참가 신청에서 내 동호회 회원 중 파트너를 고를 수 있습니다.'),
+                ],
+              ),
+            ),
+          ), // D-9 P10
         const SizedBox(height: 8),
         for (final (icon, label, value) in rows)
           if (value.isNotEmpty)
@@ -116,7 +139,9 @@ class _InfoTab extends StatelessWidget {
         const SizedBox(height: 24),
         // D-5 P05: 접수 중이 아니면 버튼을 끄고 이유를 같이 보여 준다 (누른 뒤 실패하지 않게)
         FilledButton.icon(
-          onPressed: open ? () => EntrySheet.show(context, t) : null,
+          onPressed: open
+              ? () => EntrySheet.show(context, t, loadPartners: loadPartners)
+              : null,
           icon: const Icon(Icons.how_to_reg),
           label: const Text('참가 신청'),
         ), // D-5 P05

@@ -235,3 +235,34 @@ class SectionTitle extends StatelessWidget {
     );
   }
 }
+
+/// 스카치 더블 배지 — 두 선수가 한 팀으로 번갈아 치는 대회임을 카드·상세·신청 시트에서 같은 모양으로 알린다
+class ScotchDoublesBadge extends StatelessWidget {
+  const ScotchDoublesBadge({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: scheme.secondaryContainer,
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.people_alt, size: 14, color: scheme.onSecondaryContainer),
+          const SizedBox(width: 4),
+          Text(
+            '스카치 더블 · 2인 1팀',
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: scheme.onSecondaryContainer,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
