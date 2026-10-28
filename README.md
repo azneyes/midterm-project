@@ -48,7 +48,7 @@ v2에서 바뀐 것 3개 — 원칙 카드(`docs/원칙카드.md`)의 P번호와
 | 현행 별점 | ★ 3.6 (Google Play) — 분포는 ★5가 가장 많고 ★1이 두 번째인 양 끝이 높은 모양 · 캡처 `docs/screenshots/00_rating_distribution.png` |
 | 리뷰 수 | 수집 17개 (★5 6 · ★3 1 · ★2 1 · ★1 9) — 스토어 전체 리뷰 수 44개 |
 | 대표 리뷰 | "설치후 계속 로그인 오류 나서 춘천시합도 신청 못했네요 비밀번호 재설정해도 소용없고 무슨 어플이 이런가요?" — ★1 · 2019-08-04 (작성자 이름 지움) |
-| 출처 | Google Play KBF NOW (TODO: 스토어 링크) · 확인한 날짜 2026-10-29 · 분석 `docs/리뷰분석.md` |
+| 출처 | Google Play KBF NOW (https://play.google.com/store/apps/details?id=com.kbf.cuesco) · 확인한 날짜 2026-10-29 · 분석 `docs/리뷰분석.md` |
 
 ---
 
@@ -56,9 +56,9 @@ v2에서 바뀐 것 3개 — 원칙 카드(`docs/원칙카드.md`)의 P번호와
 
 | 칸 | 내용 |
 |---|---|
-| 현행 앱 | KBF NOW — TODO: 스토어 링크 |
+| 현행 앱 | KBF NOW — [Google Play](https://play.google.com/store/apps/details?id=com.kbf.cuesco) |
 | v2 한 문장 | 대회 일정 · 대진표 · 결과 · 랭킹을 한 앱에서 확인하고, AI 분석으로 내 경기력의 약점을 찾는다 |
-| 작성자 | TODO: 이름(또는 이니셜) · 1인 1팀 (각자 제출) |
+| 작성자 | 권오빈 · 1인 1팀 (각자 제출) |
 | 데모 | 전체 흐름 [demo_1min.mp4](docs/영상/demo_1min.mp4) · 오류 상태 → 다시 시도 [p09.mp4](docs/영상/p09.mp4) |
 | AI 사용 | 규칙 `AGENTS.md` · 기록 `docs/prompt-log.md` · 셀프 논증 기록 `docs/셀프논증.md` · 기획 확정 태그 `v1-plan` |
 
