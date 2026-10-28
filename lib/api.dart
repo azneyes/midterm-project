@@ -1,5 +1,5 @@
 // 데이터 가져오기 — GET만 쓴다 (중간고사 안내 5장: POST/PUT/DELETE·저장은 감점)
-// 화면 코드는 이 파일의 fetchItems() / fetchNotes()만 부른다. (관심사 분리)
+// 화면 코드는 이 파일의 fetch…() 함수만 부른다. (관심사 분리)
 //
 // 서버 주소 (코드 수정 없이 실행할 때 바꾼다):
 //   기본값  Android 에뮬레이터 → http://10.0.2.2:3000   그 외(Chrome·macOS·iOS 시뮬레이터) → http://localhost:3000
@@ -70,20 +70,50 @@ Future<List<Object?>> _getList(String path) async {
   return decoded;
 }
 
-// TODO: db.json의 최상위 키 이름을 바꾸면 아래 경로('items', 'notes')도 같이 바꾼다.
-
-/// A 목록 화면: GET /items
-Future<List<Item>> fetchItems() async {
-  final list = await _getList('items');
-  return list.map(Item.fromJson).nonNulls.toList();
+/// T 대회 일정: GET /tournaments
+Future<List<Tournament>> fetchTournaments() async {
+  final list = await _getList('tournaments');
+  return list.map(Tournament.fromJson).nonNulls.toList();
 }
 
-/// B 상세 화면 '메모' 탭: GET /notes?itemId=1 (json-server의 필터 — 여전히 GET)
-Future<List<Note>> fetchNotes(int itemId) async {
-  final list = await _getList('notes?itemId=$itemId');
-  return list.map(Note.fromJson).nonNulls.toList();
+/// D 대회 상세 '대진표' 탭: GET /brackets?tournamentId=2 (json-server의 필터 — 여전히 GET)
+Future<List<BracketMatch>> fetchBrackets(int tournamentId) async {
+  final list = await _getList('brackets?tournamentId=$tournamentId');
+  return list.map(BracketMatch.fromJson).nonNulls.toList();
+}
+
+/// D 대회 상세 '결과' 탭: GET /results?tournamentId=3 (정렬도 json-server가 한다 — 앱은 계산하지 않음)
+Future<List<Standing>> fetchResults(int tournamentId) async {
+  final list = await _getList('results?tournamentId=$tournamentId&_sort=place');
+  return list.map(Standing.fromJson).nonNulls.toList();
+}
+
+/// R 선수 랭킹: GET /players?_sort=rank
+Future<List<Player>> fetchPlayers() async {
+  final list = await _getList('players?_sort=rank');
+  return list.map(Player.fromJson).nonNulls.toList();
+}
+
+/// P 선수 프로필 경기 기록: GET /matches?playerId=1
+Future<List<MatchRecord>> fetchMatches(int playerId) async {
+  final list = await _getList(
+    'matches?playerId=$playerId&_sort=date&_order=desc',
+  );
+  return list.map(MatchRecord.fromJson).nonNulls.toList();
+}
+
+/// N 소식: GET /news
+Future<List<News>> fetchNews() async {
+  final list = await _getList('news?_sort=date&_order=desc');
+  return list.map(News.fromJson).nonNulls.toList();
+}
+
+/// C AI 코치: GET /videos (미리 작성한 분석 결과가 들어 있다 — 실제 영상 분석 없음)
+Future<List<MatchVideo>> fetchVideos() async {
+  final list = await _getList('videos');
+  return list.map(MatchVideo.fromJson).nonNulls.toList();
 }
 
 /// 화면이 데이터를 받는 함수 모양 — 테스트에서는 가짜 함수를 넣는다.
-typedef ItemsLoader = Future<List<Item>> Function();
-typedef NotesLoader = Future<List<Note>> Function(int itemId);
+typedef Loader<T> = Future<List<T>> Function();
+typedef LoaderById<T> = Future<List<T>> Function(int id);

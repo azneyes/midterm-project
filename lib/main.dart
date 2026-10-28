@@ -1,30 +1,146 @@
-// TODO: 앱 이름 v2 — GAI3008 중간고사 (UI만 구현)
+// KPA NOW v2 — GAI3008 중간고사 (UI만 구현)
 //
 // ┌──────── 디자인 가이드 대응표: 앱 뼈대 ──────────────────────────────────────┐
-// │ 번호 │ Flutter 위젯명        │ 비즈니스 명칭(한글)      │ 원칙(P번호)       │
-// │ S-1  │ MaterialApp           │ TODO: 앱 이름            │ —                 │
-// │ S-2  │ ThemeData(seedColor)  │ TODO: 브랜드 색          │ P04 일관성 (예)   │
+// │ 번호 │ Flutter 위젯명               │ 비즈니스 명칭(한글)  │ 원칙(P번호)        │
+// │ S-1  │ MaterialApp                  │ KPA NOW              │ —                  │
+// │ S-2  │ ThemeData(seedColor 그린)    │ 당구대 그린 브랜드 색│ P04 일관성         │
+// │ S-3  │ NavigationBar (<840dp)       │ 하단 메뉴 4개        │ P06 재인 · P04     │
+// │ S-4  │ NavigationRail (≥840dp)      │ 측면 메뉴 4개        │ 적응형 · P06       │
+// │ S-5  │ IndexedStack                 │ 메뉴별 화면 유지     │ P03 통제·자유      │
 // └────────────────────────────────────────────────────────────────────────────┘
 // 화면 흐름(docs/디자인가이드.md 1장과 같게):
-//   A 목록 ──쌓기(push)──▶ B 상세 [옆으로(tab): 정보 | 메모] ──덮기(modal)──▶ C 결과(임의)
+//   [옆으로(tab)] 대회 · 랭킹 · 소식 · AI 코치
+//   T 대회 일정 ──쌓기(push)──▶ D 대회 상세 [옆으로(tab): 정보 | 대진표 | 결과] ──덮기(modal)──▶ E 참가 신청(예시)
+//   R 선수 랭킹 ──쌓기(push)──▶ P 선수 프로필 ──덮기(modal)──▶ A AI 경기력 분석 카드
+//   N 협회 소식 (화면 안 펼치기 — setState)
+//   C AI 코치  ──쌓기(push)──▶ V 영상 분석 결과
 // 기획 문서에 없는 화면은 만들지 않는다(감점). 화면을 늘리면 이 주석·가이드도 같이 고친다.
 import 'package:flutter/material.dart';
 
-import 'screens/a_list_screen.dart';
+import 'screens/coach_screen.dart';
+import 'screens/news_screen.dart';
+import 'screens/rankings_screen.dart';
+import 'screens/tournaments_screen.dart';
 
-void main() => runApp(const MidProjectApp());
+void main() => runApp(const KpaNowApp());
 
-class MidProjectApp extends StatelessWidget {
-  const MidProjectApp({super.key});
+/// 이 너비 이상이면 측면 메뉴(NavigationRail) — Material 3 window size class: expanded ≥ 840dp
+const railBreakpoint = 840.0;
+
+class KpaNowApp extends StatelessWidget {
+  const KpaNowApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Mid Project Template', // S-1 TODO: 내 앱 이름 v2로 바꾼다
+      title: 'KPA NOW', // S-1
       debugShowCheckedModeBanner: false,
-      // S-2 TODO: 현행 앱의 브랜드 색으로 바꾼다
-      theme: ThemeData(colorSchemeSeed: const Color(0xFF3F51B5)),
-      home: const ListScreen(),
+      theme: ThemeData(
+        colorSchemeSeed: const Color(0xFF0B6E4F),
+      ), // S-2 P04 당구대 그린
+      home: const KpaShell(),
+    );
+  }
+}
+
+/// 메뉴 4개 — 순서·아이콘·이름은 디자인 가이드 S-3 표와 같다
+const _destinations = [
+  (
+    icon: Icons.emoji_events_outlined,
+    selected: Icons.emoji_events,
+    label: '대회',
+  ),
+  (icon: Icons.leaderboard_outlined, selected: Icons.leaderboard, label: '랭킹'),
+  (icon: Icons.campaign_outlined, selected: Icons.campaign, label: '소식'),
+  (
+    icon: Icons.smart_display_outlined,
+    selected: Icons.smart_display,
+    label: 'AI 코치',
+  ),
+];
+
+class KpaShell extends StatefulWidget {
+  const KpaShell({super.key});
+
+  @override
+  State<KpaShell> createState() => _KpaShellState();
+}
+
+class _KpaShellState extends State<KpaShell> {
+  // 메뉴 선택 = 화면 안 표시 변화 → setState (허용)
+  int _index = 0;
+
+  static const _pages = [
+    TournamentsScreen(),
+    RankingsScreen(),
+    NewsScreen(),
+    CoachScreen(),
+  ];
+
+  void _select(int i) {
+    setState(() {
+      _index = i;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // S-5 P03: IndexedStack이라 메뉴를 바꿔도 보던 목록 위치가 남는다
+    final body = IndexedStack(index: _index, children: _pages);
+    return LayoutBuilder(
+      // 적응형: 기기 종류가 아니라 창 너비로 나눈다
+      builder: (context, constraints) {
+        if (constraints.maxWidth >= railBreakpoint) {
+          return Scaffold(
+            body: Row(
+              children: [
+                NavigationRail(
+                  // S-4 넓은 화면: 측면 메뉴
+                  selectedIndex: _index,
+                  onDestinationSelected: _select,
+                  labelType: NavigationRailLabelType.all,
+                  leading: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Text(
+                      'KPA NOW',
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                  ),
+                  destinations: [
+                    for (final d in _destinations)
+                      NavigationRailDestination(
+                        icon: Icon(d.icon),
+                        selectedIcon: Icon(d.selected),
+                        label: Text(d.label),
+                      ),
+                  ],
+                ),
+                const VerticalDivider(width: 1),
+                Expanded(child: body),
+              ],
+            ),
+          );
+        }
+        return Scaffold(
+          body: body,
+          bottomNavigationBar: NavigationBar(
+            // S-3 P06 폰: 하단 메뉴 (아이콘 + 글자)
+            selectedIndex: _index,
+            onDestinationSelected: _select,
+            destinations: [
+              for (final d in _destinations)
+                NavigationDestination(
+                  icon: Icon(d.icon),
+                  selectedIcon: Icon(d.selected),
+                  label: d.label,
+                ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

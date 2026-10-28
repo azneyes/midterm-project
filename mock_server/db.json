@@ -1,60 +1,208 @@
 {
-  "items": [
+  "tournaments": [
     {
       "id": 1,
-      "title": "예시 항목 1",
-      "subtitle": "TODO: 내 앱의 실제 화면에 맞는 예시 문구로 바꾼다",
-      "image": "https://picsum.photos/seed/item1/400/300",
-      "tags": [
-        "예시",
-        "태그A"
-      ]
+      "name": "2026 KPA 코리아 9볼 오픈",
+      "status": "접수중",
+      "dDay": "접수 마감 D-5",
+      "startDate": "2026-11-14",
+      "endDate": "2026-11-16",
+      "venue": "서울 송파 KPA 당구 아레나",
+      "region": "서울",
+      "game": "9볼",
+      "divisions": ["남자 오픈", "여자 오픈", "아마추어"],
+      "entryFee": "50,000원 (아마추어 30,000원)",
+      "prize": "총상금 3,000만 원",
+      "raceTo": "예선 7선승 · 본선 9선승",
+      "aiSummary": ""
     },
     {
       "id": 2,
-      "title": "예시 항목 2",
-      "subtitle": "목록 → 상세 → 결과 흐름을 확인하기 위한 샘플 데이터",
-      "image": "https://picsum.photos/seed/item2/400/300",
-      "tags": [
-        "태그B"
-      ]
+      "name": "제12회 부산 10볼 챔피언십",
+      "status": "진행중",
+      "dDay": "오늘 8강 진행",
+      "startDate": "2026-10-28",
+      "endDate": "2026-10-30",
+      "venue": "부산 해운대 스포츠센터",
+      "region": "부산",
+      "game": "10볼",
+      "divisions": ["남자 오픈", "여자 오픈"],
+      "entryFee": "50,000원",
+      "prize": "총상금 1,500만 원",
+      "raceTo": "8강부터 9선승",
+      "aiSummary": ""
     },
     {
       "id": 3,
-      "title": "예시 항목 3",
-      "subtitle": "태그가 없는 항목 (빈 값도 화면이 깨지지 않는지 확인)",
-      "image": "https://picsum.photos/seed/item3/400/300",
-      "tags": []
+      "name": "2026 KPA 동호인 리그 3차",
+      "status": "종료",
+      "dDay": "10월 12일 종료",
+      "startDate": "2026-10-11",
+      "endDate": "2026-10-12",
+      "venue": "대전 유성 큐스포츠",
+      "region": "대전",
+      "game": "8볼",
+      "divisions": ["동호인 A", "동호인 B"],
+      "entryFee": "20,000원",
+      "prize": "우승 트로피 · 랭킹 포인트 300",
+      "raceTo": "5선승",
+      "aiSummary": "결승은 5:4 접전이었습니다. 우승자 김도윤은 브레이크 후 첫 공 성공률이 82%로 대회 1위였고, 준우승자 이서준은 세이프티 성공률(71%)이 높았지만 마지막 프레임 8번 공 컷샷에서 두께 실수가 나왔습니다. ※ 미리 작성한 예시 요약입니다."
     },
     {
       "id": 4,
-      "title": "예시 항목 4",
-      "subtitle": "넓은 화면(600dp 이상)에서는 격자로 보인다",
-      "image": "https://picsum.photos/seed/item4/400/300",
-      "tags": [
-        "태그A",
-        "태그B"
-      ]
+      "name": "2026 KPA 여자 9볼 투어 4차",
+      "status": "종료",
+      "dDay": "9월 28일 종료",
+      "startDate": "2026-09-27",
+      "endDate": "2026-09-28",
+      "venue": "인천 남동 빌리어드홀",
+      "region": "인천",
+      "game": "9볼",
+      "divisions": ["여자 오픈"],
+      "entryFee": "40,000원",
+      "prize": "총상금 800만 원",
+      "raceTo": "본선 7선승",
+      "aiSummary": "정하윤이 대회 전 경기를 3점 차 이상으로 이겼습니다. 런아웃(한 이닝에 모든 공 넣기) 6회로 최다였고, 결승에서 상대 한수아의 포지션 실수 2번을 모두 득점으로 연결했습니다. ※ 미리 작성한 예시 요약입니다."
     }
   ],
-  "notes": [
+  "brackets": [
+    { "id": 1, "tournamentId": 2, "round": "8강", "table": "1번 테이블", "time": "14:00", "playerA": "김도윤", "playerB": "최민재", "scoreA": 9, "scoreB": 6, "status": "종료" },
+    { "id": 2, "tournamentId": 2, "round": "8강", "table": "2번 테이블", "time": "14:00", "playerA": "이서준", "playerB": "오태현", "scoreA": 5, "scoreB": 4, "status": "진행중" },
+    { "id": 3, "tournamentId": 2, "round": "8강", "table": "3번 테이블", "time": "15:30", "playerA": "박지호", "playerB": "송민규", "scoreA": null, "scoreB": null, "status": "예정" },
+    { "id": 4, "tournamentId": 2, "round": "8강", "table": "4번 테이블", "time": "15:30", "playerA": "정하윤", "playerB": "한수아", "scoreA": null, "scoreB": null, "status": "예정" },
+    { "id": 5, "tournamentId": 2, "round": "4강", "table": "1번 테이블", "time": "18:00", "playerA": "김도윤", "playerB": "8강 2경기 승자", "scoreA": null, "scoreB": null, "status": "예정" },
+    { "id": 6, "tournamentId": 3, "round": "결승", "table": "센터 테이블", "time": "16:00", "playerA": "김도윤", "playerB": "이서준", "scoreA": 5, "scoreB": 4, "status": "종료" },
+    { "id": 7, "tournamentId": 3, "round": "4강", "table": "1번 테이블", "time": "13:00", "playerA": "김도윤", "playerB": "윤서연", "scoreA": 5, "scoreB": 2, "status": "종료" },
+    { "id": 8, "tournamentId": 3, "round": "4강", "table": "2번 테이블", "time": "13:00", "playerA": "이서준", "playerB": "박지호", "scoreA": 5, "scoreB": 3, "status": "종료" },
+    { "id": 9, "tournamentId": 4, "round": "결승", "table": "센터 테이블", "time": "17:00", "playerA": "정하윤", "playerB": "한수아", "scoreA": 7, "scoreB": 3, "status": "종료" }
+  ],
+  "results": [
+    { "id": 1, "tournamentId": 3, "place": 1, "playerName": "김도윤", "club": "서울 큐클럽", "points": 300 },
+    { "id": 2, "tournamentId": 3, "place": 2, "playerName": "이서준", "club": "대전 브레이크", "points": 200 },
+    { "id": 3, "tournamentId": 3, "place": 3, "playerName": "박지호", "club": "부산 나인볼", "points": 120 },
+    { "id": 4, "tournamentId": 3, "place": 3, "playerName": "윤서연", "club": "인천 포켓", "points": 120 },
+    { "id": 5, "tournamentId": 4, "place": 1, "playerName": "정하윤", "club": "인천 포켓", "points": 300 },
+    { "id": 6, "tournamentId": 4, "place": 2, "playerName": "한수아", "club": "서울 큐클럽", "points": 200 }
+  ],
+  "players": [
     {
-      "id": 1,
-      "itemId": 1,
-      "text": "예시 메모 1 — 상세 화면 '메모' 탭에 보인다",
-      "date": "2026-10-15"
+      "id": 1, "name": "김도윤", "division": "남자", "club": "서울 큐클럽", "region": "서울",
+      "rank": 1, "points": 2840, "rankChange": "▲1", "wins": 42, "losses": 11, "winRate": "79%",
+      "stats": { "breakSuccess": 82, "safety": 64, "longShot": 71, "position": 77 },
+      "analysis": {
+        "summary": "브레이크 후 첫 공 성공률이 높아 주도권을 잘 잡습니다. 긴 거리 컷샷에서 실수가 몰립니다.",
+        "strengths": ["브레이크 후 첫 공 성공률 82% (상위 5%)", "런아웃 시도 시 마무리율이 높음"],
+        "weaknesses": ["2m 이상 롱 컷샷 성공률 58%", "레일에 붙은 공에서 세이프티 선택이 늦음"],
+        "tip": "롱 컷샷 연습: 하루 30구, 6번·9번 공 위치에서 두께 1/4 고정 연습"
+      }
     },
     {
-      "id": 2,
-      "itemId": 1,
-      "text": "예시 메모 2",
-      "date": "2026-10-16"
+      "id": 2, "name": "이서준", "division": "남자", "club": "대전 브레이크", "region": "대전",
+      "rank": 2, "points": 2610, "rankChange": "▼1", "wins": 38, "losses": 14, "winRate": "73%",
+      "stats": { "breakSuccess": 61, "safety": 71, "longShot": 66, "position": 69 },
+      "analysis": {
+        "summary": "세이프티로 상대 실수를 끌어내는 경기 운영이 강점입니다. 결정적인 순간의 두께 실수가 패배로 이어졌습니다.",
+        "strengths": ["세이프티 성공률 71% (랭킹 1위)", "킥 샷(쿠션 맞고 맞히기) 성공률 높음"],
+        "weaknesses": ["마지막 프레임 압박 상황 실수 비율 높음", "브레이크 후 첫 공 성공률 61%"],
+        "tip": "실전 압박 연습: 9번 공만 남긴 상황 10회 연속 성공 루틴"
+      }
     },
     {
-      "id": 3,
-      "itemId": 2,
-      "text": "예시 메모 3",
-      "date": "2026-10-17"
+      "id": 3, "name": "박지호", "division": "남자", "club": "부산 나인볼", "region": "부산",
+      "rank": 3, "points": 2385, "rankChange": "−", "wins": 33, "losses": 15, "winRate": "69%",
+      "stats": { "breakSuccess": 70, "safety": 58, "longShot": 74, "position": 62 },
+      "analysis": {
+        "summary": "롱샷이 정확하지만 다음 공을 위한 위치 잡기(포지셔닝)가 짧게 끊깁니다.",
+        "strengths": ["롱 컷샷 성공률 74%"],
+        "weaknesses": ["포지셔닝 실패 후 어려운 샷이 연속됨", "세이프티 선택 빈도 낮음"],
+        "tip": "스톱샷·드로우 거리 조절 연습: 큐볼을 30cm 단위로 세우기"
+      }
+    },
+    {
+      "id": 4, "name": "최민재", "division": "남자", "club": "광주 스트로크", "region": "광주",
+      "rank": 4, "points": 2120, "rankChange": "▲2", "wins": 29, "losses": 17, "winRate": "63%",
+      "stats": { "breakSuccess": 66, "safety": 60, "longShot": 59, "position": 68 },
+      "analysis": {
+        "summary": "꾸준한 경기력이지만 상위 랭커 상대로 롱샷 실수가 잦습니다.",
+        "strengths": ["안정적인 포지셔닝"],
+        "weaknesses": ["상위 10위 상대 승률 35%"],
+        "tip": "상위 랭커 경기 영상 복기: 샷 선택 순서 비교"
+      }
+    },
+    {
+      "id": 5, "name": "정하윤", "division": "여자", "club": "인천 포켓", "region": "인천",
+      "rank": 1, "points": 2950, "rankChange": "−", "wins": 45, "losses": 8, "winRate": "85%",
+      "stats": { "breakSuccess": 75, "safety": 69, "longShot": 72, "position": 84 },
+      "analysis": {
+        "summary": "포지셔닝 점수가 가장 높아 런아웃이 많습니다. 브레이크 파워 편차가 약점입니다.",
+        "strengths": ["런아웃 6회 (투어 4차 최다)", "포지셔닝 점수 84"],
+        "weaknesses": ["브레이크 파워 편차가 커서 공이 안 갈라질 때가 있음"],
+        "tip": "브레이크 루틴 고정: 스탠스·큐 속도 체크리스트 3단계"
+      }
+    },
+    {
+      "id": 6, "name": "한수아", "division": "여자", "club": "서울 큐클럽", "region": "서울",
+      "rank": 2, "points": 2470, "rankChange": "▲1", "wins": 36, "losses": 13, "winRate": "73%",
+      "stats": { "breakSuccess": 68, "safety": 66, "longShot": 63, "position": 61 },
+      "analysis": {
+        "summary": "공격적인 샷 선택이 강점이지만 포지션 실수가 상대 득점으로 이어졌습니다.",
+        "strengths": ["뱅크샷 성공률 높음"],
+        "weaknesses": ["결승에서 포지션 실수 2회 → 상대 런아웃"],
+        "tip": "다음 공 2개 앞까지 경로 그리기 연습"
+      }
+    },
+    {
+      "id": 7, "name": "윤서연", "division": "여자", "club": "인천 포켓", "region": "인천",
+      "rank": 3, "points": 2210, "rankChange": "▼1", "wins": 30, "losses": 16, "winRate": "65%",
+      "stats": { "breakSuccess": 59, "safety": 72, "longShot": 60, "position": 66 },
+      "analysis": {
+        "summary": "세이프티 성공률이 높고 수비적인 운영을 합니다.",
+        "strengths": ["세이프티 성공률 72%"],
+        "weaknesses": ["브레이크 성공률 59%"],
+        "tip": "브레이크 위치를 헤드 레일 쪽으로 옮겨 비교 연습"
+      }
+    }
+  ],
+  "matches": [
+    { "id": 1, "playerId": 1, "date": "2026-10-28", "tournament": "제12회 부산 10볼 챔피언십", "round": "8강", "opponent": "최민재", "score": "9 : 6", "result": "승" },
+    { "id": 2, "playerId": 1, "date": "2026-10-12", "tournament": "2026 KPA 동호인 리그 3차", "round": "결승", "opponent": "이서준", "score": "5 : 4", "result": "승" },
+    { "id": 3, "playerId": 1, "date": "2026-10-12", "tournament": "2026 KPA 동호인 리그 3차", "round": "4강", "opponent": "윤서연", "score": "5 : 2", "result": "승" },
+    { "id": 4, "playerId": 1, "date": "2026-09-20", "tournament": "2026 KPA 서울 오픈", "round": "16강", "opponent": "박지호", "score": "6 : 7", "result": "패" },
+    { "id": 5, "playerId": 2, "date": "2026-10-28", "tournament": "제12회 부산 10볼 챔피언십", "round": "8강", "opponent": "오태현", "score": "5 : 4 (진행중)", "result": "진행중" },
+    { "id": 6, "playerId": 2, "date": "2026-10-12", "tournament": "2026 KPA 동호인 리그 3차", "round": "결승", "opponent": "김도윤", "score": "4 : 5", "result": "패" },
+    { "id": 7, "playerId": 2, "date": "2026-10-12", "tournament": "2026 KPA 동호인 리그 3차", "round": "4강", "opponent": "박지호", "score": "5 : 3", "result": "승" },
+    { "id": 8, "playerId": 3, "date": "2026-10-12", "tournament": "2026 KPA 동호인 리그 3차", "round": "4강", "opponent": "이서준", "score": "3 : 5", "result": "패" },
+    { "id": 9, "playerId": 3, "date": "2026-09-20", "tournament": "2026 KPA 서울 오픈", "round": "16강", "opponent": "김도윤", "score": "7 : 6", "result": "승" },
+    { "id": 10, "playerId": 4, "date": "2026-10-28", "tournament": "제12회 부산 10볼 챔피언십", "round": "8강", "opponent": "김도윤", "score": "6 : 9", "result": "패" },
+    { "id": 11, "playerId": 5, "date": "2026-09-28", "tournament": "2026 KPA 여자 9볼 투어 4차", "round": "결승", "opponent": "한수아", "score": "7 : 3", "result": "승" },
+    { "id": 12, "playerId": 6, "date": "2026-09-28", "tournament": "2026 KPA 여자 9볼 투어 4차", "round": "결승", "opponent": "정하윤", "score": "3 : 7", "result": "패" }
+  ],
+  "news": [
+    { "id": 1, "category": "공지", "date": "2026-10-27", "title": "코리아 9볼 오픈 참가 접수 시작", "body": "11월 14일~16일 서울 송파 KPA 당구 아레나에서 열리는 코리아 9볼 오픈 참가 접수가 시작되었습니다. 접수 마감은 11월 3일입니다. 부문별 참가비와 경기 방식은 대회 상세 화면에서 확인하세요." },
+    { "id": 2, "category": "경기 결과", "date": "2026-10-13", "title": "동호인 리그 3차, 김도윤 우승", "body": "대전 유성에서 열린 동호인 리그 3차 결승에서 김도윤(서울 큐클럽)이 이서준(대전 브레이크)을 5:4로 꺾고 우승했습니다." },
+    { "id": 3, "category": "규정", "date": "2026-10-01", "title": "2027 시즌 랭킹 포인트 규정 안내", "body": "2027 시즌부터 동호인 리그 포인트가 오픈 대회의 50%로 반영됩니다. 자세한 규정은 협회 공지 원문을 참고하세요." }
+  ],
+  "videos": [
+    {
+      "id": 1, "title": "동호인 리그 3차 결승 · 마지막 프레임", "player": "이서준", "date": "2026-10-12", "duration": "4:32",
+      "summary": "8번 공 컷샷에서 두께가 얇게 맞아 실패했고, 그 전 7번 공에서 큐볼 위치가 짧게 남은 것이 원인이었습니다.",
+      "mistakes": [
+        { "time": "1:48", "title": "7번 공 포지셔닝 짧음", "cause": "스톱샷 의도였지만 큐볼이 20cm 덜 굴러 8번 공 각도가 30°→55°로 커짐" },
+        { "time": "2:10", "title": "8번 공 컷샷 두께 실수", "cause": "각도가 큰 컷샷에서 시선이 목표 공 끝이 아닌 중앙에 머무름" }
+      ],
+      "shotSelection": "7번 공에서 스톱샷 대신 살짝 끌어치기(드로우)를 선택하면 8번 공이 정면에 가까운 각도로 남습니다.",
+      "angle": "8번 공은 55° 컷샷이었습니다. 30° 이내로 남겼다면 성공 확률이 크게 올라갑니다.",
+      "positioning": "다음 공 기준 '안전 지역' 안에 큐볼을 세우는 연습이 필요합니다. 7번→8번 경로에서 큐볼이 멈출 목표 지점을 먼저 정하세요."
+    },
+    {
+      "id": 2, "title": "여자 9볼 투어 4차 결승 · 런아웃 장면", "player": "정하윤", "date": "2026-09-28", "duration": "2:15",
+      "summary": "한 이닝에 1~9번 공을 모두 넣은 런아웃입니다. 3번→4번 공에서 쿠션을 활용한 포지셔닝이 특히 좋았습니다.",
+      "mistakes": [
+        { "time": "0:52", "title": "5번 공 약간 얇게 맞음", "cause": "포켓 모서리를 맞고 들어감 — 성공했지만 위험한 샷" }
+      ],
+      "shotSelection": "샷 선택이 모두 안정적이었습니다. 5번 공은 뱅크샷보다 직접 컷샷이 더 안전한 선택이었습니다.",
+      "angle": "평균 컷 각도 22°로 매우 안정적입니다.",
+      "positioning": "쿠션 한 번을 이용해 다음 공 정면에 서는 패턴이 4회 반복되었습니다."
     }
   ]
 }

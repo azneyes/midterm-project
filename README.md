@@ -1,21 +1,21 @@
-# Mid Project Template (TODO: 내 앱 이름 v2) — GAI3008 중간프로젝트 저장소 (1인 1팀)
+# KPA NOW v2 — GAI3008 중간프로젝트 저장소 (1인 1팀)
 
 ## 앱 소개
 
 > 앱스토어 상품 페이지처럼 채웁니다. 칸 이름과 순서는 발표 자료의 "앱 소개" 장과 같습니다 — 바꾸지 않습니다.
 
 ### 앱 이름
-TODO: 앱 이름 v2
+KPA NOW (Korea Pool Association) v2
 
 ### 부제
-TODO: 한 줄 (예: "○○를 3번 안에 끝내는 ○○ 앱")
+대한민국 포켓볼 대회 정보와 경기 기록을 한눈에 확인하는 통합 스포츠 앱
 
 ### 카테고리
-TODO: 스토어 카테고리 (예: 음식 및 음료 · 교육 · 생산성)
+스포츠 (Sports)
 
 ### 대상 사용자 / 사용 상황
-- 대상 사용자: TODO (퍼소나 한 줄 — 사업 요약과 같게)
-- 사용 상황: TODO (언제 · 어디서 · 어떤 기기로)
+- 대상 사용자: 대한민국 포켓볼 선수, 아마추어 및 동호인 선수, 당구 동호회 회원, 대회 참가자, 포켓볼 팬
+- 사용 상황: TODO (예: 대회 당일 경기장에서 폰으로 대진표 확인 · 연습 후 태블릿으로 경기 영상 복기)
 
 ### 스크린샷
 이미지는 `docs/screenshots/`에 넣고 아래 링크의 파일 이름만 맞춥니다. 3~5칸, 왼쪽부터 v1(현행) → v2.
@@ -26,18 +26,18 @@ TODO: 스토어 카테고리 (예: 음식 및 음료 · 교육 · 생산성)
 | TODO: 캡션 | TODO: 캡션 | TODO: 캡션 | TODO: 캡션 | TODO: 캡션 |
 
 ### 설명
-1. TODO: 이 앱이 무엇을 하는가
-2. TODO: v2가 해결하는 문제 (리뷰·저니 근거)
-3. TODO: v2의 핵심 가치
+1. KPA NOW는 대한민국 포켓볼 대회 일정, 참가 신청 안내, 대진표, 경기 결과 및 선수 랭킹을 한곳에서 확인할 수 있는 스포츠 앱입니다. 선수별 경기 기록과 주요 소식을 제공하여 대회 정보에 쉽게 접근하고 포켓볼 커뮤니티에 활발히 참여할 수 있도록 돕습니다.
+2. TODO: v2가 해결하는 문제 (KBF NOW 리뷰·저니 근거)
+3. AI 기능: AI 경기 요약 및 선수 경기력 분석 카드는 경기 결과와 선수 통계를 요약하고, 녹화 영상을 분석해 실수의 원인과 미스샷으로 이어진 문제를 찾아냅니다. 또한 샷 선택, 각도 계산 및 포지셔닝 개선을 위한 맞춤형 피드백을 제공하여 선수들이 약점을 파악하고 경기력을 향상할 수 있도록 돕습니다. (중간고사 UI에서는 미리 작성한 예시 결과로 보여 줍니다.)
 
 ### 새로운 기능
 v2에서 바뀐 것 3개 — 원칙 카드(`docs/원칙카드.md`)의 P번호와 연결합니다.
 
 | P번호 | 바뀐 것 (화면 · 요소 번호) | 근거 (리뷰 · 원칙) |
 |---|---|---|
-| P__ | TODO | TODO |
-| P__ | TODO | TODO |
-| P__ | TODO | TODO |
+| P01 | 대회 카드 맨 위 접수 상태 배지 · 마감 안내 (T-5), 모든 목록의 로딩 · 빈 상태 | TODO: 리뷰 인용 · 닐슨 1 |
+| P07 | 대회 상세 정보 \| 대진표 \| 결과 3탭 + 상태에 맞는 탭 먼저 (D-2), AI 경기력 분석 카드 (P-4) | TODO: 리뷰 인용 · 닐슨 7 |
+| P05 | 접수 기간이 아니면 참가 신청 버튼을 끄고 이유 표시, 확인 사항 체크 전 신청 불가 (D-5 · E-5) | TODO: 리뷰 인용 · 닐슨 5 |
 
 ### 평가 및 리뷰
 | 항목 | 내용 |
@@ -53,8 +53,8 @@ v2에서 바뀐 것 3개 — 원칙 카드(`docs/원칙카드.md`)의 P번호와
 
 | 칸 | 내용 |
 |---|---|
-| 현행 앱 | TODO: 실제 앱 이름 (스토어 링크) |
-| v2 한 문장 | TODO: v2의 핵심 가치 한 줄 |
+| 현행 앱 | KBF NOW — TODO: 스토어 링크 |
+| v2 한 문장 | 대회 일정 · 대진표 · 결과 · 랭킹을 한 앱에서 확인하고, AI 분석으로 내 경기력의 약점을 찾는다 |
 | 작성자 | TODO: 이름(또는 이니셜) · 1인 1팀 (각자 제출) |
 | 데모 | TODO: 데모 영상 1분 링크(`docs/영상/demo_1min.mp4`) 또는 배포 URL — **제출물 ①에 필수** |
 | AI 사용 | 규칙 `AGENTS.md` · 기록 `docs/prompt-log.md` · 셀프 논증 기록 `docs/셀프논증.md` · 기획 확정 태그 `v1-plan` |
@@ -84,7 +84,7 @@ v2에서 바뀐 것 3개 — 원칙 카드(`docs/원칙카드.md`)의 P번호와
 ```bash
 cd mock_server
 npm install && npm start          # http://localhost:3000  (npm run mock 도 같음)
-curl http://localhost:3000/items  # 확인: JSON 배열이 나오면 성공
+curl http://localhost:3000/tournaments  # 확인: JSON 배열이 나오면 성공
 ```
 
 **터미널 2 — 앱**
@@ -117,22 +117,28 @@ flutter run --dart-define=DEMO_STATE=empty     # 빈 상태
 ## 2. 구조
 
 ```
-mid-project-template/
+kpa-now-v2/
 ├── README.md                 # 실행 방법 [필수]
 ├── AGENTS.md                 # AI 가드레일 (UI만) — CLAUDE.md는 이 파일을 따른다는 한 줄
 ├── pubspec.yaml              # 추가 패키지는 http 하나
 ├── lib/
-│   ├── main.dart             # 앱 뼈대 · 화면 흐름 주석
+│   ├── main.dart             # 앱 뼈대 S · 메뉴 4개(폰 하단 / 840dp 이상 측면) · 화면 흐름 주석
 │   ├── api.dart              # GET만 · API_BASE · DEMO_STATE
-│   ├── models.dart           # JSON → 객체 (Dart 3 패턴 fromJson)
-│   ├── widgets.dart          # LoadingView · ErrorView · EmptyView (+ NetImage)
+│   ├── models.dart           # JSON → Tournament · BracketMatch · Standing · Player · MatchRecord · News · MatchVideo
+│   ├── widgets.dart          # LoadingView · ErrorView · EmptyView · AsyncListView · StatusBadge · DemoNotice
 │   └── screens/
-│       ├── a_list_screen.dart    # 화면 A 목록 — GET /items, 3상태, 600dp 적응형
-│       ├── b_detail_screen.dart  # 화면 B 상세 — push로 들어옴, 탭(정보|메모), GET /notes
-│       └── c_result_sheet.dart   # 화면 C 결과(임의) — 모달 시트, 미리 정한 결과
-├── test/widget_test.dart     # 3상태 · push/tab/modal · 600dp 위젯 테스트
+│       ├── tournaments_screen.dart       # T 대회 일정 — GET /tournaments, 상태 필터, 600dp 격자
+│       ├── tournament_detail_screen.dart # D 대회 상세 — push, 탭(정보|대진표|결과), GET /brackets · /results
+│       ├── entry_sheet.dart              # E 참가 신청(예시) — modal, 완료 안내 Dialog
+│       ├── rankings_screen.dart          # R 선수 랭킹 — GET /players, 남자|여자
+│       ├── player_screen.dart            # P 선수 프로필 — push, GET /matches, 600dp 2단
+│       ├── analysis_sheet.dart           # A AI 경기력 분석 카드 — modal, 미리 작성한 분석
+│       ├── news_screen.dart              # N 협회 소식 — GET /news, 펼쳐 읽기
+│       ├── coach_screen.dart             # C AI 코치 — GET /videos
+│       └── video_analysis_screen.dart    # V 영상 분석 결과 — push, 미리 작성한 피드백
+├── test/widget_test.dart     # 3상태 · push/tab/modal · 600dp/840dp 위젯 테스트
 ├── mock_server/
-│   ├── db.json               # [필수] GET 데이터 (items · notes)
+│   ├── db.json               # [필수] GET 데이터 (tournaments · brackets · results · players · matches · news · videos) — 선수는 모두 가상 인물
 │   ├── package.json          # json-server 0.17.4 고정
 │   ├── api/server.js · vercel.json   # (가산) 읽기 전용 배포
 │   └── README.md
@@ -148,11 +154,18 @@ mid-project-template/
 
 ## 3. 화면 목록 ↔ 기획 문서 요소 번호
 
-| 화면 | 이름 (TODO: 비즈니스 명칭) | 파일 | 전환 | 요소 번호 |
+| 화면 | 이름 (비즈니스 명칭) | 파일 | 전환 | 요소 번호 |
 |---|---|---|---|---|
-| A | TODO | `lib/screens/a_list_screen.dart` | 첫 화면 | A-1 ~ A-6 |
-| B | TODO | `lib/screens/b_detail_screen.dart` | 쌓기(push) · 옆으로(tab) | B-1 ~ B-7 |
-| C | TODO | `lib/screens/c_result_sheet.dart` | 덮기(modal) | C-1 ~ C-4 |
+| S | 앱 뼈대 · 메뉴 4개 | `lib/main.dart` | 옆으로(NavigationBar · Rail) | S-1 ~ S-5 |
+| T | 대회 일정 | `lib/screens/tournaments_screen.dart` | 첫 화면 | T-1 ~ T-8 |
+| D | 대회 상세 | `lib/screens/tournament_detail_screen.dart` | 쌓기(push) · 옆으로(tab) | D-1 ~ D-8 |
+| E | 참가 신청(예시) | `lib/screens/entry_sheet.dart` | 덮기(modal) · Dialog | E-1 ~ E-6 |
+| R | 선수 랭킹 | `lib/screens/rankings_screen.dart` | 옆으로(메뉴) | R-1 ~ R-6 |
+| P | 선수 프로필 | `lib/screens/player_screen.dart` | 쌓기(push) | P-1 ~ P-6 |
+| A | AI 경기력 분석 카드 | `lib/screens/analysis_sheet.dart` | 덮기(modal) | A-1 ~ A-7 |
+| N | 협회 소식 | `lib/screens/news_screen.dart` | 옆으로(메뉴) | N-1 ~ N-5 |
+| C | AI 코치 | `lib/screens/coach_screen.dart` | 옆으로(메뉴) | C-1 ~ C-6 |
+| V | 영상 분석 결과 | `lib/screens/video_analysis_screen.dart` | 쌓기(push) | V-1 ~ V-7 |
 
 각 화면 파일 맨 위에 **디자인 가이드 대응표**(번호 · Flutter 위젯명 · 비즈니스 명칭 · 원칙) 주석이 있고, 코드 안에서 같은 번호(`// A-5 P09`)로 찾을 수 있습니다. `docs/디자인가이드.md`와 1:1로 맞춥니다. **가이드에 없는 화면은 만들지 않습니다**(감점).
 
@@ -205,7 +218,7 @@ grep -rnE "http\.(post|put|patch|delete)|SharedPreferences|sqflite|hive|Firebase
 
 1. 새 폴더에 받기: `git clone <저장소 URL> clone-test`
 2. 터미널 1: `cd clone-test/mock_server && npm install && npm start`
-3. 서버 확인: `curl http://localhost:3000/items` (내가 바꾼 `db.json` 키로)
+3. 서버 확인: `curl http://localhost:3000/tournaments`
 4. 터미널 2: `cd clone-test && flutter pub get`
 5. 실행: `flutter run -d chrome` (Android 에뮬레이터는 그냥 `flutter run`)
 6. 화면 전환 · GET 목록 · 로딩/오류/빈 상태(`DEMO_STATE`) · 넓은 화면(창 크기 늘리기) 확인 → 안 되면 README를 고치고 1부터 다시
