@@ -7,7 +7,7 @@
 // │ S-3  │ NavigationBar (<840dp)       │ 하단 메뉴 5개        │ P06 재인 · P04     │
 // │ S-4  │ NavigationRail (≥840dp)      │ 측면 메뉴 5개        │ 적응형 · P06       │
 // │ S-5  │ IndexedStack                 │ 메뉴별 화면 유지     │ P03 통제·자유      │
-// │ S-6  │ AppBar(primary) + 8볼 로고   │ KPA NOW 브랜드 바    │ P04 일관성         │
+// │ S-6  │ AppBar(primary) + PoolBall×3 │ KPA NOW 브랜드 바    │ P04 일관성         │
 // └────────────────────────────────────────────────────────────────────────────┘
 // 화면 흐름(docs/디자인가이드.md 1장과 같게):
 //   [옆으로(tab)] 대회 · 랭킹 · 동호회 · 소식 · AI 코치
@@ -24,6 +24,7 @@ import 'screens/coach_screen.dart';
 import 'screens/news_screen.dart';
 import 'screens/rankings_screen.dart';
 import 'screens/tournaments_screen.dart';
+import 'widgets.dart';
 
 void main() => runApp(const KpaNowApp());
 
@@ -158,39 +159,18 @@ class BrandBar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: 48,
       backgroundColor: scheme.primary,
       foregroundColor: scheme.onPrimary,
-      titleSpacing: 16,
-      title: Row(
+      centerTitle: true, // 로고를 가운데에
+      title: const Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          // 8볼 모양 로고 — 이미지 파일 없이 위젯으로 그린다
-          Container(
-            width: 26,
-            height: 26,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              color: Colors.black,
-              shape: BoxShape.circle,
-            ),
-            child: Container(
-              width: 14,
-              height: 14,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              child: const Text(
-                '8',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 9,
-                  fontWeight: FontWeight.w900,
-                  height: 1,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
-          const Text(
+          // 8볼 · 9볼 · 10볼 — KPA가 여는 세 종목. 이미지 파일 없이 위젯으로 그린다
+          PoolBall(number: 8, color: Colors.black),
+          SizedBox(width: 4),
+          PoolBall(number: 9, color: Color(0xFFF7C600), striped: true),
+          SizedBox(width: 4),
+          PoolBall(number: 10, color: Color(0xFF1E4FBF), striped: true),
+          SizedBox(width: 10),
+          Text(
             'KPA NOW',
             style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1.5),
           ),

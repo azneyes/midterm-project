@@ -266,3 +266,108 @@ class ScotchDoublesBadge extends StatelessWidget {
     );
   }
 }
+
+/// 당구공 로고 — 단색공(1–8)은 공 전체가 색, 줄무늬공(9–15)은 가운데 띠만 색. 가운데 흰 원에 번호.
+class PoolBall extends StatelessWidget {
+  const PoolBall({
+    super.key,
+    required this.number,
+    required this.color,
+    this.striped = false,
+    this.size = 26,
+  });
+
+  final int number;
+  final Color color;
+  final bool striped;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    final inner = size * 0.56;
+    return SizedBox(
+      width: size,
+      height: size,
+      child: ClipOval(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            if (striped)
+              // Positioned.fill: 띠가 공 너비를 꽉 채우게 (안 하면 너비 0)
+              Positioned.fill(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Expanded(child: ColoredBox(color: Colors.white)),
+                    Expanded(flex: 2, child: ColoredBox(color: color)),
+                    const Expanded(child: ColoredBox(color: Colors.white)),
+                  ],
+                ),
+              )
+            else
+              ColoredBox(color: color, child: const SizedBox.expand()),
+            Container(
+              width: inner,
+              height: inner,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: Text(
+                '$number',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: number > 9 ? size * 0.28 : size * 0.35,
+                  fontWeight: FontWeight.w900,
+                  height: 1,
+                  letterSpacing: -0.5,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// 웹(Chrome)에서 한글 글꼴이 늦게 도착하면, 그 전에 잰 너비로 칩 글자가 잘린다.
+/// 글꼴이 도착했다는 알림(systemFonts)을 받으면 child를 새로 만들어 다시 재게 한다.
+/// child 안의 상태(선택한 필터 등)는 부모가 들고 있으므로 지워지지 않는다. 폰 · 데스크톱 앱에서는 알림이 거의 없다.
+class RebuildOnFontLoad extends StatefulWidget {
+  const RebuildOnFontLoad({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  State<RebuildOnFontLoad> createState() => _RebuildOnFontLoadState();
+}
+
+class _RebuildOnFontLoadState extends State<RebuildOnFontLoad> {
+  int _generation = 0;
+
+  void _onFontsChanged() {
+    if (!mounted) return;
+    setState(() {
+      _generation++;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    PaintingBinding.instance.systemFonts.addListener(_onFontsChanged);
+  }
+
+  @override
+  void dispose() {
+    PaintingBinding.instance.systemFonts.removeListener(_onFontsChanged);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return KeyedSubtree(key: ValueKey(_generation), child: widget.child);
+  }
+}

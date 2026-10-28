@@ -73,24 +73,27 @@ class _TournamentsScreenState extends State<TournamentsScreen> {
       appBar: AppBar(title: const Text('대회 일정')), // T-1 P04
       body: Column(
         children: [
-          SingleChildScrollView(
-            // T-2 P07: 상태 필터 — 한 번 눌러 접수 중인 대회만
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-            child: Row(
-              children: [
-                for (final f in _filters)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: ChoiceChip(
-                      label: Text(f),
-                      selected: _filter == f,
-                      onSelected: (_) => setState(() {
-                        _filter = f;
-                      }),
+          RebuildOnFontLoad(
+            // 웹: 한글 글꼴이 늦게 와도 칩 글자가 잘리지 않게 다시 잰다
+            child: SingleChildScrollView(
+              // T-2 P07: 상태 필터 — 한 번 눌러 접수 중인 대회만
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+              child: Row(
+                children: [
+                  for (final f in _filters)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ChoiceChip(
+                        label: Text(f),
+                        selected: _filter == f,
+                        onSelected: (_) => setState(() {
+                          _filter = f;
+                        }),
+                      ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
           Expanded(

@@ -61,16 +61,18 @@ class _RankingsScreenState extends State<RankingsScreen> {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-            child: SegmentedButton<String>(
-              // R-2 P06
-              segments: const [
-                ButtonSegment(value: '남자', label: Text('남자')),
-                ButtonSegment(value: '여자', label: Text('여자')),
-              ],
-              selected: {_division},
-              onSelectionChanged: (s) => setState(() {
-                _division = s.first;
-              }),
+            child: RebuildOnFontLoad(
+              child: SegmentedButton<String>(
+                // R-2 P06
+                segments: const [
+                  ButtonSegment(value: '남자', label: Text('남자')),
+                  ButtonSegment(value: '여자', label: Text('여자')),
+                ],
+                selected: {_division},
+                onSelectionChanged: (s) => setState(() {
+                  _division = s.first;
+                }),
+              ),
             ),
           ),
           Expanded(
