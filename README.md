@@ -60,7 +60,7 @@ v2에서 바뀐 것 3개 — 원칙 카드(`docs/원칙카드.md`)의 P번호와
 | v2 한 문장 | 대회 일정 · 대진표 · 결과 · 랭킹을 한 앱에서 확인하고, AI 분석으로 내 경기력의 약점을 찾는다 |
 | 작성자 | 권오빈 · 1인 1팀 (각자 제출) |
 | 데모 | 전체 흐름 [demo_1min.mp4](docs/영상/demo_1min.mp4) · 오류 상태 → 다시 시도 [p09.mp4](docs/영상/p09.mp4) |
-| AI 사용 | 규칙 `AGENTS.md` · 기록 `docs/prompt-log.md` · 셀프 논증 기록 `docs/셀프논증.md` · 기획 확정 태그 `v1-plan` |
+| AI 사용 | 규칙 `AGENTS.md` · 기록 `docs/prompt-log.md` · 셀프 논증 기록 `docs/셀프논증.md` · 전 · 후 기준은 캡처 `docs/screenshots/i1–i3` (`v1-plan` 태그는 쓰지 않음) |
 
 > 이 저장소는 **UI만 구현**합니다(중간고사 안내문 5장). 보이기는 다 동작하는 것처럼, 실제 동작(저장·로그인·결제·실제 계산)은 없습니다.
 
@@ -192,6 +192,8 @@ P번호 = 닐슨 원칙 번호. 원칙 카드에 붙인 번호 하나를 다섯 
 
 ## 5. 기준점 Git 태그 `v1-plan` [권장]
 
+> 이 저장소는 태그를 붙이지 않고, 셀프 논증의 전 · 후를 캡처(`docs/screenshots/i1–i3`)와 커밋 기록으로 남겼습니다. 아래는 템플릿의 안내입니다.
+
 내가 화면 기획(흐름 · 요소 분석 · 가이드 글)을 확정한 직후 **한 번만** 붙입니다. 그 뒤 커밋이 UI 진행 기록이 되고, 셀프 논증 기록의 전 · 후 기준이 됩니다.
 
 ```bash
@@ -247,7 +249,7 @@ grep -rnE "http\.(post|put|patch|delete)|SharedPreferences|sqflite|hive|Firebase
 
 ```bash
 flutter analyze   # No issues found!  (경로가 영문일 때 — 0장 참고)
-flutter test      # 4개 통과: 3상태(로딩·오류→다시 시도 · 빈) · push/tab/modal 흐름 · 600dp 격자
+flutter test      # 8개 통과: 3상태(로딩·오류→다시 시도 · 빈) · 필터 결과 없음 · push/tab/modal 흐름 · 스카치 더블 파트너 선택 · 동호회 · 600dp/840dp
 ```
 
 `pubspec.yaml` 의존성: `flutter`, `cupertino_icons`, `http`뿐. 플랫폼 설정: Android 디버그 빌드 평문 HTTP 허용(`android/app/src/debug/AndroidManifest.xml`), macOS 나가는 네트워크 허용(`macos/Runner/*.entitlements`).
